@@ -36,16 +36,11 @@ class _SourceDetailsScreenState extends State<SourceDetailsScreen> {
                     border: Border.all(color: AppColors.grey.withOpacity(0.8), width: 1.w),
                   ),
                   child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        const RadialGaugeChart(),
-                        SizedBox(height: 20.h),
-                        if (provider.isDataViewSelected())
-                          const DataViewContainer()
-                        else if (provider.isRevenueViewSelected())
-                          const RevenueViewContainer(),
-                      ],
-                    ),
+                    child: provider.isDataViewSelected()
+                        ? const DataViewContainer()
+                        : provider.isRevenueViewSelected()
+                        ? const RevenueViewContainer()
+                        : const SizedBox.shrink(),
                   ),
                 ),
                 _topOptionSelectContainer(provider),

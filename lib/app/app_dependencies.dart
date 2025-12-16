@@ -17,7 +17,9 @@ class AppDependencies {
     getIt.registerLazySingleton<NavigateToLoginUseCase>(() => NavigateToLoginUseCase());
     getIt.registerLazySingleton<GetSourceDataUseCase>(() => GetSourceDataUseCase(getIt<ScmRepository>()));
     getIt.registerLazySingleton<GetGridDataUseCase>(() => GetGridDataUseCase(getIt<ScmRepository>()));
-
+    getIt.registerLazySingleton<GetTodayDataUseCase>(() => GetTodayDataUseCase(getIt<ScmRepository>()));
+    getIt.registerLazySingleton<GetCustomDateDataUseCase>(() => GetCustomDateDataUseCase(getIt<ScmRepository>()));
+    getIt.registerLazySingleton<GetRevenueDataUseCase>(() => GetRevenueDataUseCase(getIt<ScmRepository>()));
   }
 
   static void _registerProviders() {
@@ -26,10 +28,16 @@ class AppDependencies {
       () => ScmScreenProvider(
         getSourceDataUseCase: getIt<GetSourceDataUseCase>(),
         getGridDataUseCase: getIt<GetGridDataUseCase>(),
+        getTodayDataUseCase: getIt<GetTodayDataUseCase>(),
+        getCustomDateDataUseCase: getIt<GetCustomDateDataUseCase>(),
       ),
     );
     getIt.registerLazySingleton<OptionDetailsScreenProvider>(() => OptionDetailsScreenProvider());
-    getIt.registerLazySingleton<SourceDetailsScreenProvider>(() => SourceDetailsScreenProvider());
+    getIt.registerLazySingleton<SourceDetailsScreenProvider>(
+      () => SourceDetailsScreenProvider(
+        getRevenueDataUseCase: getIt<GetRevenueDataUseCase>(),
+      ),
+    );
   }
 
   static void reset() {

@@ -1,7 +1,13 @@
 import '/app/exports.dart';
 
 class RadialGaugeChart extends StatelessWidget {
-  const RadialGaugeChart({super.key});
+  final double value;
+  final String unit;
+  const RadialGaugeChart({
+    super.key,
+    required this.value,
+    required this.unit,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +46,7 @@ class RadialGaugeChart extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Text(
-                      '55.00',
+                      value.toString(),
                       style: TextStyle(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w600,
@@ -48,7 +54,7 @@ class RadialGaugeChart extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'kWh/Sqft',
+                      unit,
                       style: TextStyle(
                         fontSize: 14.sp,
                         color: AppColors.primaryText,

@@ -3,7 +3,13 @@ import '/app/exports.dart';
 class BuildOption extends StatelessWidget {
   final String title;
   final bool isSelected;
-  const BuildOption({super.key, required this.title, required this.isSelected});
+  final double size;
+  const BuildOption({
+    super.key,
+    required this.title,
+    required this.isSelected,
+    this.size = 16,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +19,13 @@ class BuildOption extends StatelessWidget {
         Icon(
           isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
           color: isSelected ? AppColors.primary : AppColors.primaryText,
-          size: 16.sp,
+          size: size.sp,
         ),
         Text(
           title,
           style: TextStyle(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w600,
+            fontSize: size.sp,
+            fontWeight: FontWeight.w400,
             color: isSelected ? AppColors.primary : AppColors.primaryText,
           ),
         ),

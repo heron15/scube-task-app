@@ -1,5 +1,4 @@
-import '../entities/scm_grid_item.dart';
-import '../repositories/scm_repository.dart';
+import '/app/exports.dart';
 
 class GetGridDataUseCase {
   final ScmRepository repository;
@@ -10,4 +9,3 @@ class GetGridDataUseCase {
     return repository.getGridData();
   }
 }
-

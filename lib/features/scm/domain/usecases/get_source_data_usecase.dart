@@ -1,5 +1,4 @@
-import '../entities/source_item.dart';
-import '../repositories/scm_repository.dart';
+import '/app/exports.dart';
 
 class GetSourceDataUseCase {
   final ScmRepository repository;
@@ -9,6 +8,4 @@ class GetSourceDataUseCase {
   List<SourceItem> call() {
     return repository.getSourceData();
   }
-
-  
 }

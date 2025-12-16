@@ -3,13 +3,19 @@ import 'package:scube_task_app/app/exports.dart';
 class ScmScreenProvider extends ChangeNotifier {
   final GetSourceDataUseCase getSourceDataUseCase;
   final GetGridDataUseCase getGridDataUseCase;
+  final GetTodayDataUseCase getTodayDataUseCase;
+  final GetCustomDateDataUseCase getCustomDateDataUseCase;
 
   ScmScreenProvider({
     required this.getSourceDataUseCase,
     required this.getGridDataUseCase,
+    required this.getTodayDataUseCase,
+    required this.getCustomDateDataUseCase,
   }) {
     _loadSourceData();
     _loadGridData();
+    _loadTodayData();
+    _loadCustomDateData();
   }
 
   static const List<String> _tabs = ['Summary', 'SLD', 'Data'];
@@ -46,6 +52,12 @@ class ScmScreenProvider extends ChangeNotifier {
   List<ScmGridItem> _gridData = [];
   List<ScmGridItem> get gridData => _gridData;
 
+  List<ListOfDateWiseDataItem> _todayData = [];
+  List<ListOfDateWiseDataItem> get todayData => _todayData;
+
+  List<ListOfDateWiseDataItem> _customDateData = [];
+  List<ListOfDateWiseDataItem> get customDateData => _customDateData;
+
   void _loadSourceData() {
     _sourceData = getSourceDataUseCase.call();
     notifyListeners();
@@ -55,4 +67,20 @@ class ScmScreenProvider extends ChangeNotifier {
     _gridData = getGridDataUseCase.call();
     notifyListeners();
   }
+
+  void _loadTodayData() {
+    _todayData = getTodayDataUseCase.call();
+    notifyListeners();
+  }
+
+  void _loadCustomDateData() {
+    _customDateData = getCustomDateDataUseCase.call();
+    notifyListeners();
+  }
+
+  final TextEditingController _fromDateController = TextEditingController();
+  final TextEditingController _toDateController = TextEditingController();
+
+  TextEditingController get fromDateController => _fromDateController;
+  TextEditingController get toDateController => _toDateController;
 }
